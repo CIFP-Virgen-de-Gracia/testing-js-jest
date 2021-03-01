@@ -12,6 +12,7 @@ Conjunto de ejemplos para realizar test unitarios y TDD usando Jest con JavaScri
 
 - [Testing JS con JEST](#testing-js-con-jest)
   - [Acerca de](#acerca-de)
+    - [Consideraciones](#consideraciones)
 - [¿Por qué Jest?](#por-qué-jest)
   - [Otras alternativas](#otras-alternativas)
 - [Instalación](#instalación)
@@ -46,12 +47,19 @@ Conjunto de ejemplos para realizar test unitarios y TDD usando Jest con JavaScri
   - [Testeando Métodos y Eventos](#testeando-métodos-y-eventos)
   - [Accediendos a elementos del DOM o específicos](#accediendos-a-elementos-del-dom-o-específicos)
   - [Ejemplos](#ejemplos)
+- [Intrducción al Testing E2E con Jest](#intrducción-al-testing-e2e-con-jest)
+  - [Acciones](#acciones)
+  - [¿Cómo hacer el e2e?](#cómo-hacer-el-e2e)
+  - [Ejemplos](#ejemplos-1)
 - [Autor](#autor)
   - [Licencia](#licencia)
     - [Agradecimientos](#agradecimientos)
 
 ## Acerca de
 Conjunto de códigos con el objetivo de introducir la suite de test [Jest](https://jestjs.io/docs/es-ES/getting-started) y mostrar como realizar test unitarios y TDD/ATDD sobre JavaScript para Node.js, HTML y un Framework como Vue.js.
+
+### Consideraciones
+No intentes ejecutar todos os test porque pueden dar error por incompatibilidades. Por favor sigue el tutorial y sus commits.
 
 # ¿Por qué Jest?
 [Jest](https://jestjs.io/docs/es-ES/getting-started) es una de las muchas posibilidades que tenemos para testear nuestro código o proyecto en JavaScript (ya sea en cliente o en Node.js). Jest está basado en [Jasmine](https://jasmine.github.io/), y se define como la suite de "test con 0 configuración", es decir, mietras otras suite de test necesitan de de un motor (test runner) para pasar los test y de la propia suit de test como de una librería de asercciones o matchers, Jest intenta que todo esto esté ya agrupado para agilizar el proceos de test desde el principio. Esto no quiere deceir que no se pueda ampliar o profundizar y personalizar con otras librerías o no tenga la potencia de otros.
@@ -61,6 +69,7 @@ En cualquier caso, las bases de estos ejemplos te servirá para las distintas al
 ![img](https://landing-page-book.front10.com/images/frameworks/jest.png)
 
 ## Otras alternativas
+Existen muchas alternativas y cada una enfocadas a un aspecto. En este tutorial me centro en Jest, pero como he dicho hay varias ya sea para test unitarios, TDD, BDD o E2E. Te recomiendo [este artículo](https://medium.com/welldone-software/an-overview-of-javascript-testing-7ce7298b9870) para tener una visión al respecto. Remarco los siguientes para test unitarios:
 - [Jasmine](https://jasmine.github.io/). Es una de las ibrerías por excelencia para hacer test, "padre" de Jest y además la suite básica en [Angular](https://angular.io/guide/testing).
 - [Karma](https://karma-runner.github.io/latest/index.html). Es un motor de test, que desarrollado por el equipo de Ángular, suele usarser junto Jasmine para este tipo de proyectos.
 - [Mocha](https://mochajs.org/). Es una librería de test pensanda sobre todo para apliaciones Node.js muy pontente y configurable al gusto.
@@ -260,7 +269,29 @@ En el proyecto Vue que tienes, existen ejemplos de cada cosa indicada:
 - TheHeader, Parent y Child en con TestingVue para ver las diferentes formas de testear a nivel básico y como hacer wrapper de los componentes.
 - Final.vue donde se testea propiedades, datos, eventos y métodos.
 - ToDo.vue, el cual nos sirve para testear un típico gestor de tareas y trabajar con selectores del tipo id, así como mock con Jest en vue. De hecho se ha hecho un mock de axios, de la manera que siempre que llamemos a una función que usa axios, se simula dicha funcion usando el mock, es decir, se simula su comportamiento con los datos que tenemos en la carpeta __mocks__. Jest recogerá automáticamente este archivo y mapeará las llamadas que se hace a la biblioteca axios por las llamadas a nuestro fichero en el test ahorrarnos el consumo de la API REST externa y mejorando el rendimienro de nuestros test.
-  
+
+# Intrducción al Testing E2E con Jest
+
+Los Tests E2E simulan el comportamiento de un usuario real. Prueban toda la aplicación de principio a fin, cubriendo así secciones que las pruebas unitarias y las pruebas de integración no cubren simulando acciones del usuario sobre la interfaz y sus compoentes a nivel conjunto.
+
+Aunque hay Frameworks específicios para hacer este tipo de tareas, como es el conocido [Cypress.io](https://www.cypress.io/), nosotros estamos trabajando con el motor Jest y queremos algo que nos simplifique esto y ademas con apenas [configuración](https://jestjs.io/docs/en/puppeteer). Es por ello que vamos a hacer uso de [Puppeteer](https://developers.google.com/web/tools/puppeteer) para este menester.
+
+![img](https://blog.theodo.com/static/4fa13218586c9165575f0f75d80e7f3d/a79d3/1_pN3IJVbx2iv97xJ6sB9jJA.png)
+
+## Acciones
+Con esta librería [podemos hacer](https://www.adictosaltrabajo.com/2020/02/27/testing-funcional-con-puppeteer/):
+- Analizar el SEO de la página y obtener sus atributos.
+- Modificar el viewport y capturar la pantalla.
+- Utilizar selectores.
+- Disparar eventos.
+- Interactuar con los elementos.
+
+## ¿Cómo hacer el e2e?
+Partimos de los test de aceptación y automatizamos el flujo de [acciones que el usuario haría y queremos probar](https://medium.com/puntotech/tests-e2e-con-jest-y-puppeteer-1c5f25e1e3aa).
+
+## Ejemplos
+En la carpeta puppeteer tienes unos cuantos, además que puedes encontrar pro internet, pero te recomiendo [este](https://github.com/checkly/puppeteer-examples) y [este](https://github.com/puppeteer/puppeteer/tree/main/examples). Esi sí, no olvides que ya debes usarlo dentro del motro de Jest y siguiendo la filosofía de Jest.
+
 # Autor
 
 Codificado con :sparkling\_heart: por [José Luis González Sánchez](https://twitter.com/joseluisgonsan)
